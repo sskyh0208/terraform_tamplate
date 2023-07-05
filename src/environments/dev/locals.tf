@@ -10,4 +10,16 @@ locals {
     create_database_subnets = true
     azs                     = [ "ap-northeast-1a", "ap-northeast-1c" ]
   }
+
+  public_sg = {
+    name    = "public"
+    ingress = {
+      cidr_blocks = [ "0.0.0.0/0" ]
+      rules       = [ "http-80-tcp", "https-443-tcp" ]
+    }
+    egress = {
+      cidr_blocks = [ "0.0.0.0/0" ]
+      rules       = [ "all-all" ]
+    }
+  }
 }

@@ -15,3 +15,20 @@ module "vpc" {
   create_database_subnets = local.vpc.create_database_subnets
   azs                     = local.vpc.azs
 }
+
+module "public_sg" {
+  source = "../../modules/security_group"
+
+  # common
+  product_name = var.product_name
+
+  # unique
+  env                     = local.env
+  prefix                  = "${local.env}-${var.product_name}"
+  vpc_id                  = module.vpc.vpc_id
+  name                    = local.public_sg.name         
+  ingress_cidr_blocks     = local.public_sg.ingress.cidr_blocks
+  ingress_rules           = local.public_sg.ingress.rules
+  egress_cidr_blocks      = local.public_sg.egress.cidr_blocks
+  egress_rules            = local.public_sg.egress.rules
+}
