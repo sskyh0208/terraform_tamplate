@@ -1,3 +1,6 @@
+# ---------------------------
+# SecurityGroup
+# ---------------------------
 resource "aws_security_group" "this" {
   name        = "${var.prefix}-sg-${var.name}"
   description = "Security Group for ${var.env} ${var.product_name} ${var.name}"
