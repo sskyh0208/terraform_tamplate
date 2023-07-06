@@ -4,7 +4,9 @@ resource "aws_security_group" "this" {
   vpc_id      = var.vpc_id
   
   tags = {
-    Name = "${var.prefix}-sg-${var.name}"
+    Name    = "${var.prefix}-sg-${var.name}"
+    Env     = var.env
+    Product = var.product_name 
   }
 }
 

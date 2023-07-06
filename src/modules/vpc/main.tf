@@ -8,6 +8,8 @@ resource "aws_vpc" "this" {
   
   tags = {
     Name = "${var.prefix}-vpc"
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
@@ -23,6 +25,8 @@ resource "aws_subnet" "public" {
 
   tags = {
     Name = format("${var.prefix}-subnet-public-%s", element(var.azs, count.index))
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
@@ -35,6 +39,8 @@ resource "aws_subnet" "private" {
 
   tags = {
     Name = format("${var.prefix}-subnet-private-%s", element(var.azs, count.index))
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
@@ -47,6 +53,8 @@ resource "aws_subnet" "database" {
 
   tags = {
     Name = format("${var.prefix}-subnet-database-%s", element(var.azs, count.index))
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
@@ -59,6 +67,8 @@ resource "aws_db_subnet_group" "database" {
 
   tags = {
     Name = "${var.prefix}-db-subnet-group"
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
@@ -72,6 +82,8 @@ resource "aws_internet_gateway" "this" {
 
   tags = {
     Name = "${var.prefix}-igw"
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
@@ -88,7 +100,9 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-  Name = "${var.prefix}-public-route-table"
+    Name = "${var.prefix}-public-route-table"
+    Env     = var.env
+    Product = var.product_name
   }
 }
 
