@@ -14,6 +14,7 @@ module "vpc" {
   create_private_subnets  = local.vpc.create_private_subnets
   create_database_subnets = local.vpc.create_database_subnets
   azs                     = local.vpc.azs
+  map_public_ip_on_launch = local.vpc.map_public_ip_on_launch
 }
 
 module "public_sg" {

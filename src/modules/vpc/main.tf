@@ -19,9 +19,10 @@ resource "aws_vpc" "this" {
 resource "aws_subnet" "public" {
   count = var.create_public_subnets && length(var.azs) > 0 ? length(var.azs) : 0
 
-  vpc_id              = aws_vpc.this.id
-  cidr_block          = cidrsubnet(aws_vpc.this.cidr_block, 8, count.index)
-  availability_zone   = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) > 0 ? element(var.azs, count.index) : null
+  vpc_id                  = aws_vpc.this.id
+  cidr_block              = cidrsubnet(aws_vpc.this.cidr_block, 8, count.index)
+  availability_zone       = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) > 0 ? element(var.azs, count.index) : null
+  map_public_ip_on_launch = var.map_public_ip_on_launch
 
   tags = {
     Name = format("${var.prefix}-subnet-public-%s", element(var.azs, count.index))

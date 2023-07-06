@@ -47,3 +47,8 @@ variable "azs" {
   type    = list(string)
   default = []
 }
+
+variable "map_public_ip_on_launch" {
+  type    = bool
+  default = false
+}

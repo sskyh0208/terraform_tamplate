@@ -9,6 +9,7 @@ locals {
     create_private_subnets  = false
     create_database_subnets = true
     azs                     = [ "ap-northeast-1a", "ap-northeast-1c" ]
+    map_public_ip_on_launch = true
   }
 
   public_sg = {
